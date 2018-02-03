@@ -1,5 +1,3 @@
-#include <conio.h>
-#include <windows.h>
 #include <ctime>
 #include "field.h"
 #include <stdio.h>
