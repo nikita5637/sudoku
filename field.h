@@ -1,5 +1,9 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
 #include <iostream>
 #include <vector>
+#include <ncurses.h>
 
 using namespace std;
 
@@ -793,7 +797,7 @@ public:
 
 	void print_field(bool t)
 	{
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x04);	
+		/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x04);	*/
 		cout<<(char)218;
 		for (int i = 1 ; i <= FIELD_SIZE * 4 + pow(FIELD_SIZE, 0.5) - 1 ; i++)
 		{
@@ -810,14 +814,14 @@ public:
 		printf("\n");
 		for (unsigned short i = 0 ; i < FIELD_SIZE ; i++)
 		{	
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x04);	
+			/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x04);	*/
 			cout<<(char)179;
 			for (unsigned short j = 0 ; j < FIELD_SIZE ; j++)
 			{
 				
 				if (!((j) % int(pow(FIELD_SIZE, 0.5))) && j)
 				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x04);	
+					/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x04);	*/
 					cout<<(char)179;
 				}
 				
@@ -826,14 +830,14 @@ public:
 					bool flag = false;
 					if (_field[j][i].visible)
 					{
-						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0F);
+						/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0F);*/
 						if (_field[j][i].take)
 						{
-							SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x03);
+							/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x03);*/
 						}
 						if ((j == empty.x) && (i == empty.y))
 						{
-							SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0A);	
+							/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0A);	*/
 						}
 						for (unsigned short z = 0 ; z <= FIELD_SIZE - 1 ; z++)
 						{
@@ -841,10 +845,10 @@ public:
 							{
 								if (_field[j][i].number == _field[z][i].number)
 								{
-									SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0C);
+									/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0C);*/
 									if ((j == empty.x) && (i == empty.y))
 									{
-										SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0A);	
+										/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0A);	*/
 									}
 									printf("%s%2d%s", "[", _field[j][i].number, "]");
 									flag = true;
@@ -858,10 +862,10 @@ public:
 							{
 								if (_field[j][i].number == _field[j][z].number)
 								{
-									SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0C);
+									/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0C);*/
 									if ((j == empty.x) && (i == empty.y))
 									{
-										SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0A);	
+										/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0A);	*/
 									}
 									if (!flag)
 									{
@@ -881,24 +885,24 @@ public:
 					{
 						if ((j == empty.x) && (i == empty.y))
 						{
-							SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0A);
+							/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0A);*/
 						}
 						else
 						{
-							SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0F);	
+							/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0F);	*/
 						}
 						printf("%s", "[  ]");
 					}
 				}
 				else
 				{
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x08);	
+					/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x08);	*/
 					printf("%s%2d%s", "[", _field[j][i].true_number, "]");
 				}
 			}
 			if (!((i + 1) % int(pow(FIELD_SIZE, 0.5))) && i)
 				{
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x04);	
+				/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x04);	*/
 				cout<<(char)179;
 				printf("\n");
 				if (i < 8) 
@@ -934,7 +938,7 @@ public:
 					cout<<(char)217;
 				}
 			}
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x04);	
+			/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x04);	*/
 			if (((i + 1) % int(pow(FIELD_SIZE, 0.5))))
 			{
 				cout<<(char)179;
@@ -1048,7 +1052,7 @@ public:
 	{
 		while ((difficulty > 3) || (difficulty < 1))
 		{
-			system("cls");
+			system("clear");
 			try
 			{
 				printf("%s\n", "Enter difficulty: 1 - easy, 2 - normal, 3 - hard"); 
@@ -1063,6 +1067,7 @@ public:
 			{
 				cout<<error<<endl;
 				system("pause");
+				cin.get();
 				cin.sync();
 				cin.clear();
 			}
@@ -1081,9 +1086,9 @@ public:
 					}
 				}
 		}
-		system("cls");
+		system("clear");
 		print_field(false);
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0B);
+		/*SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0B);*/
 		printf("%s\n%s\n", "Press 'w', 'a', 's', 'd' for move and press keys '1..9' for enter number.", "Press 'q' for exit / 'r' for restart.");
 		printf("%s\n", "YOU WIN!");
 		return true;

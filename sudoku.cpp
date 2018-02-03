@@ -1,6 +1,7 @@
 #include <ctime>
 #include "field.h"
 #include <stdio.h>
+#include <ncurses.h>
 
 bool game(int size)
 {
@@ -13,11 +14,11 @@ bool game(int size)
 	{
 		try
 		{
-			system("cls"); 
+			system("clear"); 
 			field.print_field(false);
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0B);
+			//SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0B);
 			printf("%s\n%s\n", "Press 'w', 'a', 's', 'd' for move and press keys '1..9' for enter number.", "Press 'q' for exit / 'r' for restart.");
-			command = _getch();
+			command = getchar();
 			switch (command)
 			{
 				case Down:
@@ -42,9 +43,10 @@ bool game(int size)
 					}
 				case 'h':
 					{
-						system("cls");
+						system("clear");
 						field.print_field(true);
 						system("pause");
+						cin.get();
 						break;
 					}
 				case ' ':
@@ -82,7 +84,7 @@ bool game(int size)
 						cin>>command;
 						if (command == 'y')
 						{
-							system("cls");
+							system("clear");
 							return true;
 						}
 						cin.sync();
@@ -100,12 +102,14 @@ bool game(int size)
 		{
 			printf("%s\n", error);
 			system("pause");
+			cin.get();
 			cin.sync();
 			cin.clear();
 		}
 	}
 	system("pause");
-	system("cls");
+	cin.get();
+	system("clear");
 	return true;
 }
 
@@ -117,7 +121,7 @@ int main()
 	{
 		try
 		{
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0F);
+			//SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0F);
 			printf("%s\n", "Select size: 4 or 9 or 16");
 			cin>>size;
 			if (cin.fail() || (!(size == 9) && !(size == 16) && !(size == 4)))
@@ -128,6 +132,7 @@ int main()
 			{
 				printf("%s\n", "Bye bye!");
 				system("pause");
+				cin.get();
 				return 0;
 			}
 		}
@@ -135,9 +140,10 @@ int main()
 		{
 			printf("%s\n", error);
 			system("pause");
+			cin.get();
 			cin.sync();
 			cin.clear();
-			system("cls");
+			system("clear");
 		}	
 	}
 }
