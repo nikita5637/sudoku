@@ -1,8 +1,8 @@
 all:
-	g++ sudoku.cpp -lncurses
+	g++ sudoku.cpp
 
 install:
-	g++ sudoku.cpp -lncurses
+	g++ sudoku.cpp
 
 run: install
 	./a.out

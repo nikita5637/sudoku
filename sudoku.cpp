@@ -1,7 +1,7 @@
 #include <ctime>
 #include "field.h"
 #include <stdio.h>
-#include <ncurses.h>
+#include "getch.h"
 
 bool game(int size)
 {
@@ -18,25 +18,29 @@ bool game(int size)
 			field.print_field(false);
 			//SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x0B);
 			printf("%s\n%s\n", "Press 'w', 'a', 's', 'd' for move and press keys '1..9' for enter number.", "Press 'q' for exit / 'r' for restart.");
-			command = getchar();
+			command = getch();
 			switch (command)
 			{
-				case Down:
+				//case Down:
+				case 's':
 					{
 						field.movedown();
 						break;
 					}
-				case Up:
+				//case Up:
+				case 'w':
 					{
 						field.moveup();
 						break;
 					}
-				case Right:
+				//case Right:
+				case 'd':
 					{
 						field.moveright();
 						break;
 					}
-				case Left:
+				//case Left:
+				case 'a':
 					{
 						field.moveleft();
 						break;

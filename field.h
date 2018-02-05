@@ -3,7 +3,6 @@
 #include <math.h>
 #include <iostream>
 #include <vector>
-#include <ncurses.h>
 
 using namespace std;
 
